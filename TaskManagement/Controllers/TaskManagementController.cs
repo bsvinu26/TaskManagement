@@ -34,6 +34,31 @@ namespace TaskManagement.Controllers
             return Ok(await _taskManagementService.GetAllItems(status,priority));
         }
 
-        
+        [HttpGet]
+        [Route("GetTask")]
+
+        public async Task<IActionResult> GetItemByID(int Id)
+        {
+            var task = await _taskManagementService.GetItemByID(Id);
+
+            if (task == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(task);
+        }
+
+
+        [HttpPut]
+        [Route("UpdateTask")]
+
+        public async Task<IActionResult> UpdateItemByID(int Id, TaskStatus? status)
+        {
+            return Ok(await _taskManagementService.UpdateItemByID(Id, status));
+        }
+
+
+
     }
 }

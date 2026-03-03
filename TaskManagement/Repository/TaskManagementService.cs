@@ -67,7 +67,66 @@ namespace TaskManagement.Repository
 
         }
 
+        public async Task<TaskCreation> GetItemByID(int Id)
+        {
+            try
+            {
+                var task = tasks.Where(t => t.Id == Id).ToList();
 
+                return task.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return null;
+            }
+
+
+        }
+
+
+        public async Task<string> UpdateItemByID(int Id, TaskStatus? status)
+        {
+            try
+            {
+               
+                var task = tasks.Where(t => t.Id == Id).FirstOrDefault();
+
+                if (task == null)
+                {
+                    return "Task not found";
+                }
+                else if (task.Status == status.Value)
+                {
+                    return "Task is already in the status you entered";
+                }
+                else if (task.Status == TaskStatus.Completed)
+                {
+
+                    return "Task is already in CompletedStatus";
+                }
+                else if (task.Status == TaskStatus.Pending && status.Value == TaskStatus.InProgress)
+                {
+                    task.Status = status.Value;
+                    return "Task is changed From Pending to In Progress";
+                }
+                else if (task.Status == TaskStatus.InProgress && status.Value == TaskStatus.Completed)
+                {
+                    task.Status = status.Value;
+
+                    return "Task is changed From InProgress to completed";
+                }
+
+
+                return "Invalid  transition";
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return ex.Message;
+            }
+        }
     }
 
 

@@ -11,8 +11,11 @@ namespace TaskManagement.Repository
 
         public Task<IEnumerable<TaskCreation>> GetAllItems(TaskStatus? status, Priority? priority);
 
+        public Task<TaskCreation> GetItemByID(int Id);
 
-      
+        public Task<string> UpdateItemByID(int Id, TaskStatus? status);
+
+
 
     }
 }
