@@ -1,3 +1,6 @@
+# Time Spent
+Time spent for this is around 120 mins
+# Approach
 Approach followed up here is .Net Web api using a repository pattern
 Created a interface, controller,service for the web application and required models 
 API's developed are basically like Crud operations 
@@ -34,3 +37,6 @@ this API is to update the status of the task
 Pending → InProgress → Completed , transistions are allowed and validations are implemented
 Response of the API is string format message which show up the status.
 
+#Trade-offs
+Can add more logs and implement text log files 
+Can Create a DB instead of in memory allocations.
